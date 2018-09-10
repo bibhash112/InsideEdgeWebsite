@@ -60,9 +60,9 @@ public class HelloController {
  
  @RequestMapping(value = "/odi", method = RequestMethod.GET)
  public ModelAndView odiPage() throws IOException, JSONException, ClassNotFoundException, SQLException {
-	 cric dao1=new cric();
+	OdiRecordsDAO dao1=new OdiRecordsDAO();
      ModelAndView model1 = new ModelAndView();
-     model1.addObject("odi", dao1.retreiveList());
+     model1.addObject("odi", dao1.getOdiRecords());
      model1.setViewName("SampleOdiPage");
      return model1;
 
@@ -71,8 +71,26 @@ public class HelloController {
  
  
  
+ @RequestMapping(value = "/test", method = RequestMethod.GET)
+ public ModelAndView testPage() throws IOException, JSONException, ClassNotFoundException, SQLException {
+	TestRecordsDAO dao1=new TestRecordsDAO();
+     ModelAndView model1 = new ModelAndView();
+     model1.addObject("odi", dao1.getTestRecords());
+     model1.setViewName("SampleTestPage");
+     return model1;
+
+ }
  
  
+ @RequestMapping(value = "/t20", method = RequestMethod.GET)
+ public ModelAndView t20Page() throws IOException, JSONException, ClassNotFoundException, SQLException {
+	T20RecordsDAO dao1=new T20RecordsDAO();
+     ModelAndView model1 = new ModelAndView();
+     model1.addObject("odi", dao1.getT20Records());
+     model1.setViewName("SampleT20Page");
+     return model1;
+
+ }
  
    /* @RequestMapping(value = "/show/TestNews", method = RequestMethod.GET)
    /public ModelAndView newsView() throws IOException, JSONException {

@@ -76,7 +76,9 @@
 									<li class="current"><a href="\home">Home</a></li>
 									<li><a href="index-1">Player Search</a></li>
 									<li><a href="/live">Live Score</a></li>
-									<li><a href="index-2">Teams</a></li>
+									<li><a href="/odi">ODI</a></li>
+									<li><a href="/test">Test</a></li>
+									<li><a href="/t20">T20</a></li>
 									<li><a href="index-4">Contacts</a></li>
 								</ul>
 							</nav>
@@ -185,7 +187,7 @@
 						<div class="socials">
 						
 							<a href="#" class="fa fa-twitter"></a>
-							<a href="#" class="fa fa-facebook"></a>
+							<a href="https://www.facebook.com" class="fa fa-facebook"></a>
 							<a href="#" class="fa fa-google-plus"></a>
 							<a href="#" class="fa fa-instagram"></a>
 						</div>

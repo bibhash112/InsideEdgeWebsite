@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,7 +56,7 @@ public class ExternalLiveScore {
 		  
 		  public static ArrayList<Matches> getAllScore() throws IOException, JSONException  {
 			  ArrayList<Matches> list=new ArrayList<>();
-			  String teama,teamb,scorea,scoreb;
+			 
 			int id,flagcodeA,flagcodeB;
 			    //JSONObject json = readJsonFromUrl("https://powerful-tor-13817.herokuapp.com/live");
 				  try{
@@ -66,15 +67,47 @@ public class ExternalLiveScore {
 				  
 			    //String a=json1.toString();
 			    //Object obj=parser.parse(a);
-			    
+			    String s=json1.toString();
+				  
+				  for(int i=0;i<5;i++){
+				  int  f=s.indexOf("{");
+				  int l=s.indexOf("}");
+				  int a=s.indexOf("'Team A':");
+					 int b=s.indexOf("'Score B':");
+					 int c=s.indexOf("'Score A':");
+					 int d=s.indexOf("'Team B':");
+					  System.out.println(a+" "+b);
+					
+					  String teama=s.substring(a+11,b-3);
+					  
+					  String scoreb=s.substring(b+12,c-3);
+					  
+					  String scorea=s.substring(c+12, d-3);
+					  
+					  String teamb=s.substring(d+11, l-1);
+				  
+				  
+				  
+				 /* System.out.println(teama1+"\n"+teamb1+"\n"+scorea1+"\n"+scoreb1);*/
+				  
+				  String x=(s.substring(f,l+1));
+				 s=s.substring(l+1, s.length());
+				 System.out.println(s);
+				 id=i;
+		          flagcodeA=findFlagCode(teama);
+		          flagcodeB=findFlagCode(teamb);
+		          Matches ob=new Matches(id,scorea,scoreb,teama,teamb,flagcodeA,flagcodeB);
+		          list.add(ob);
+		          System.out.println(ob);
+				 
+				  }
 			    //System.out.println(json.getString("ID"));
-			      JSONArray jsonarray1=json1.getJSONArray("Matches");
+			      /*JSONArray jsonarray1=json1.getJSONArray("Matches");*/
 			      //System.out.println(jsonarray1);
 			      
-			      for (int index = 0, total = 5; index < total; index++) {
-			          final JSONObject jsonObject = jsonarray1.getJSONObject(index);
+			     
 			         
-			          teama = jsonObject.getString("Team A");
+			       /*   teama = jsonObject.getString("Team A");
 			          teamb= jsonObject.getString("Team B");
 			          scorea=jsonObject.getString("Score A");
 			          scoreb=jsonObject.getString("Score B");
@@ -83,12 +116,13 @@ public class ExternalLiveScore {
 			          flagcodeB=findFlagCode(teamb);
 			          Matches ob=new Matches(id,scorea,scoreb,teama,teamb,flagcodeA,flagcodeB);
 			          list.add(ob);
-			          System.out.println(ob);
+			          System.out.println(ob);*/
 			          
-			      }
+			      
 				  }
 				  catch(Exception e)
 			      {
+					  e.printStackTrace();
 			    	  System.out.println("exception caught");
 			    	  System.out.println("printing past scores");
 			    	 
@@ -102,10 +136,10 @@ public class ExternalLiveScore {
 			    	  for (int index = 0, total = 5; index < total; index++) {
 			              final JSONObject jsonObject = jsonarray1.getJSONObject(index);
 			             
-			              teama = jsonObject.getString("Team A");
-				          teamb= jsonObject.getString("Team B");
-				          scorea=jsonObject.getString("Score A");
-				          scoreb=jsonObject.getString("Score B");
+			              String teama = jsonObject.getString("Team A");
+			              String teamb= jsonObject.getString("Team B");
+			              String scorea=jsonObject.getString("Score A");
+			              String scoreb=jsonObject.getString("Score B");
 				          id=index;
 				          flagcodeA=findFlagCode(teama);
 				          flagcodeB=findFlagCode(teamb);

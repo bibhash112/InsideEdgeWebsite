@@ -102,7 +102,7 @@
 #customers th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #4CAF50;
     color: white;
 }
@@ -361,22 +361,17 @@ function showPage() {
 						</h1>
 				<div class="container_12">
 					<div class="grid_12">
-						<!-- <div class="socials">
-							<a href="#" class="fa fa-twitter"></a>
-							<a href="#" class="fa fa-facebook"></a>
-							<a href="#" class="fa fa-google-plus"></a>
-							<a href="#" class="fa fa-instagram"></a>
-						</div> -->
+						
 						
 						<div class="menu_block">
 							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 								<ul class="sf-menu">
 									<li><a href="/home">Home</a></li>
 									<li><a href="index-1">Player Search</a></li>
-									<li  class="current"><a href="/live">Live Score</a></li>
-									<li><a href="/odi">ODI</a></li>
+									<li  ><a href="/live">Live Score</a></li>
+									<li  ><a href="/odi">ODI</a></li>
 									<li><a href="/test">Test</a></li>
-									<li><a href="t20">T20</a></li>
+									<li class="current"><a href="/t20">T20</a></li>
 									<li><a href="index-4">Contacts</a></li>
 								</ul>
 							</nav>
@@ -390,287 +385,48 @@ function showPage() {
 		
 		<br>
 		<table id="customers">
-  <tr>
-    <th colspan="3">Match 1</th>
-   
-  </tr>
-  <tr>
-  	<td><img src="https://cricket.yahoo.net/static-assets/flags/min/${teamScore.get(0).getFlagcodeA()}.png?v=1.06" height="30px" width="35px"></td>
-    <td>${teamScore.get(0).getTeamA()}</td>
-    <td>${teamScore.get(0).getScoreA()}</td>
+		<tr>
+        <th colspan="7">T20 Matches</th>
+        </tr>
+        <tr>
+        <th>Flag</th>
+        <th>Country</th>
+        <th>Matches</th>
+        <th>Won</th>
+        <th>Lost</th>
+        <th>No Results</th>
+        <th>Percentage</th>
+        </tr>
+
     
-  </tr>
-  <tr>
-    <td><img src="https://cricket.yahoo.net/static-assets/flags/min/${teamScore.get(0).getFlagcodeB()}.png?v=1.06" height="30px" width="35px"></td>
-    <td>${teamScore.get(0).getTeamB()}</td>
-    <td>${teamScore.get(0).getScoreB()}</td>
-  </tr>
-  <tr>
-    <th colspan="3">Match 2</th>
-    
-  </tr>
-   <tr>
-  	<td><img src="https://cricket.yahoo.net/static-assets/flags/min/${teamScore.get(1).getFlagcodeA()}.png?v=1.06" height="30px" width="35px"></td>
-    <td>${teamScore.get(1).getTeamA()}</td>
-    <td>${teamScore.get(1).getScoreA()}</td>
-    
-  </tr>
-  <tr>
-    <td><img src="https://cricket.yahoo.net/static-assets/flags/min/${teamScore.get(1).getFlagcodeB()}.png?v=1.06" height="30px" width="35px"></td>
-    <td>${teamScore.get(1).getTeamB()}</td>
-    <td>${teamScore.get(1).getScoreB()}</td>
-  </tr>
-  <tr>
-    <th colspan="3">Match 3</th>
-    
-  </tr>
-   <tr>
-  	<td><img src="https://cricket.yahoo.net/static-assets/flags/min/${teamScore.get(2).getFlagcodeA()}.png?v=1.06" height="30px" width="35px"></td>
-    <td>${teamScore.get(2).getTeamA()}</td>
-    <td>${teamScore.get(2).getScoreA()}</td>
-    
-  </tr>
-  <tr>
-    <td><img src="https://cricket.yahoo.net/static-assets/flags/min/${teamScore.get(2).getFlagcodeB()}.png?v=1.06" height="30px" width="35px"></td>
-    <td>${teamScore.get(2).getTeamB()}</td>
-    <td>${teamScore.get(2).getScoreB()}</td>
-  </tr>
-  <tr>
-    <th colspan="3">Match 4</th>
-   >
-  </tr>
-   <tr>
-  	<td><img src="https://cricket.yahoo.net/static-assets/flags/min/${teamScore.get(3).getFlagcodeA()}.png?v=1.06" height="30px" width="35px"></td>
-    <td>${teamScore.get(3).getTeamA()}</td>
-    <td>${teamScore.get(3).getScoreA()}</td>
-    
-  </tr>
-  <tr>
-    <td><img src="https://cricket.yahoo.net/static-assets/flags/min/${teamScore.get(3).getFlagcodeB()}.png?v=1.06" height="30px" width="35px"></td>
-    <td>${teamScore.get(3).getTeamB()}</td>
-    <td>${teamScore.get(3).getScoreB()}</td>
-  </tr>
- <tr>
-   <th colspan="3">Match 5</th>
-   
-  </tr>
-   <tr>
-  	<td><img src="https://cricket.yahoo.net/static-assets/flags/min/${teamScore.get(4).getFlagcodeA()}.png?v=1.06" height="30px" width="35px"></td>
-    <td>${teamScore.get(4).getTeamA()}</td>
-    <td>${teamScore.get(4).getScoreA()}</td>
-    
-  </tr>
-  <tr>
-    <td><img src="https://cricket.yahoo.net/static-assets/flags/min/${teamScore.get(4).getFlagcodeB()}.png?v=1.06" height="30px" width="35px"></td>
-    <td>${teamScore.get(4).getTeamB()}</td>
-    <td>${teamScore.get(4).getScoreB()}</td>
-  </tr>
+   <c:forEach items="${odi}" var="users">
+        
+       <tr>
+        	<td><img src="https://cricket.yahoo.net/static-assets/flags/min/${users.getFlagcode()}.png?v=1.06" height="30px" width="35px"></td>
+            <td>${users.getTeams()}</td>
+            <td>${users.getMatches()}</td>
+            
+            <td>${users.getWon()}</td>
+            <td>${users.getLost()}</td>
+            
+            
+            <td>${users.getNoResult()}</td>
+            <td>${users.getPercentageWon()}</td>
+            
+        </tr>
+    </c:forEach>
+  
 </table>	
 
    	<br>
    	<br>
    	
-   <%-- <table>
-      
-
-      <tr>
-         
-         
-         <td>${teamScore.get(0).getTeamA()}</td>
-         <td>${teamScore.get(0).getScoreA()}</td>
-         
-      </tr>
-
-      <tr>
-         
-         <td>${teamScore.get(0).getTeamB()}</td>
-         <td>${teamScore.get(0).getScoreB()}</td>
-      </tr>
-
-     
-      
-      <tr>
-         
-         
-         <td>${teamScore.get(1).getTeamA()}</td>
-         <td>${teamScore.get(1).getScoreA()}</td>
-         
-      </tr>
-
-      <tr>
-         
-         <td>${teamScore.get(1).getTeamB()}</td>
-         <td>${teamScore.get(1).getScoreB()}</td>
-      </tr>
-
-      
-      
-      <tr>
-         
-         
-         <td>${teamScore.get(2).getTeamA()}</td>
-         <td>${teamScore.get(2).getScoreA()}</td>
-         
-      </tr>
-
-      <tr>
-         
-         <td>${teamScore.get(2).getTeamB()}</td>
-         <td>${teamScore.get(2).getScoreB()}</td>
-      </tr>
-
-    
-      
-      
-      <tr>
-         
-         
-         <td>${teamScore.get(3).getTeamA()}</td>
-         <td>${teamScore.get(3).getScoreA()}</td>
-         
-      </tr>
-
-      <tr>
-         
-         <td>${teamScore.get(3).getTeamB()}</td>
-         <td>${teamScore.get(3).getScoreB()}</td>
-      </tr>
-
-     
-      
-      <tr>
-         
-         
-         <td>${teamScore.get(4).getTeamA()}</td>
-         <td>${teamScore.get(4).getScoreA()}</td>
-         
-      </tr>
-
-      <tr>
-         
-         <td>${teamScore.get(4).getTeamB()}</td>
-         <td>${teamScore.get(4).getScoreB()}</td>
-      </tr>
-
-     
-      
-      
-   </table>
-
-			 --%>
+  
 			
 			
-			<br>
-			<br>
-			<p> 
-		<%-- 	<center>
-   LIVE SCORES 
-   <br>
-   <table>
-    <c:forEach items="${teamScore}" var="users">
-        <tr>
-            <td>${users.getTeamA()}</td>
-            <td>${users.getTeamB()}</td>
-            </tr>
-            <tr>
-            <td>${users.getScoreA()}</td>
-            <td>${users.getScoreB()}</td>
-            
-            
-        </tr>
-    </c:forEach>
-</table>
-    
-   </center> --%>
-			<%-- <div class="slider_wrapper">
-				<div id="camera_wrap" class="">
-					<div data-src="images/1.jpg">
-						<div class="caption fadeIn">
-							<a href="https://www.google.com/search?q=${news.get(0).getTitle()}"target="_blank">${news.get(0).getTitle()}</a>
-						</div>
-					</div>
-					<div data-src="images/2.jpg">
-						<div class="caption fadeIn">
-							<a href="https://www.google.com/search?q=${news.get(1).getTitle()}"target="_blank">${news.get(1).getTitle()}</a>
-						</div>
-					</div>
-					<div data-src="images/3.jpg">
-						<div class="caption fadeIn">
-							<a href="https://www.google.com/search?q=${news.get(2).getTitle()}"target="_blank">${news.get(2).getTitle()}</a>
-						</div>
-					</div>
-					
-					<div data-src="images/4.jpg">
-						<div class="caption fadeIn">
-							<a href="https://www.google.com/search?q=${news.get(3).getTitle()}"target="_blank">${news.get(3).getTitle()}</a>
-						</div>
-					</div>
-					
-					<div data-src="images/5.jpg">
-						<div class="caption fadeIn">
-							<a href="https://www.google.com/search?q=${news.get(4).getTitle()}"target="_blank">${news.get(4).getTitle()}</a>
-						</div>
-					</div>
-				</div>
-			</div> --%>
-<!--==============================Content=================================-->
-			<!-- <div class="content"><div class="ic">More Website Templates @ TemplateMonster.com - April 21, 2014!</div>
-				<div class="container_12">
-					<div class="grid_12">
-						<h2 class="center">The Next Marathon</h2>
-						<div class="count_wrap">
-							<div id="counter"></div>
-							<div class="clear"></div>
-							<a href="#">Join Us</a>
-						</div>
-					</div>
+			
 					<div class="clear"></div>
-					<div class="grid_4">
-						<div class="box">
-							<div class="box_title">Calendar</div>
-							<div class="box_bot">
-								<div class="maxheight">
-									<img src="images/page1_img1.jpg" alt=""><a href="#">More</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="grid_4">
-						<div class="box">
-							<div class="box_title">Members</div>
-							<div class="box_bot">
-								<div class="maxheight">
-									<img src="images/page1_img2.jpg" alt=""><a href="#">More</a>
-								</div>
-							</div>
-						</div>
-					</div> 
-					<div class="grid_4">
-						<div class="box">
-							<div class="box_title">Results</div>
-							<div class="box_bot">
-								<div class="maxheight">
-									<img src="images/page1_img3.jpg" alt=""><a href="#">More</a>
-								</div>
-							</div>
-						</div>
-					</div>-->
-					<div class="clear"></div>
-					<!-- <div class="grid_7">
-						<h3>Welcome to Inside Edge</h3>
-						<img src="images/logonew.jpg" alt="" class="img_inner fleft">
-						<div class="extra_wrapper">
-							<p>This Website has been designed by Anusha, Bibhash, Nitin, Sanu and Sneha in. </p>
-							<p>You can view live news and Live Scores of ongoing Cricket matches.</p>
-							Additional features such as rankings and player search is about to get implemented soon.
-						</div>
-						<div class="clear sep__1"></div>
-						Inside Edge is a live news update and live score viewing project. It is designed as a part of our training provided by Capgemini India Pvt. Ltd. The project is being guided by our mentor and trainer, Mr. Onkar Deshpande. Inside Edge is a non-commercial project and requires a lot of resources from outside. The live news and Live score is provided by our REST service provider <a href="https://powerful-tor-13817.herokuapp.com/news">Heroku.</a> The website is up for further development and improvements. Please provide your valuable feedback.
-<br>
-						<br>
-						<br>
-						<br>					
-					</div> -->
+					
 					
 					
 					
