@@ -18,6 +18,20 @@ import com.mongodb.MongoClient;
 
 public class ExternalLiveScore {
 	
+	
+	
+	 static
+     MongoClient mongo = new MongoClient( "localhost" , 27017 );  
+     
+     @SuppressWarnings("deprecation")
+    public static DB db = mongo.getDB("Desktop");  
+     
+     
+     /*System.out.println("Data received successfully");
+	*/
+	
+	
+	
 	/* private static String readAll(Reader rd) throws IOException {
 		    StringBuilder sb = new StringBuilder();
 		    int cp;
@@ -108,14 +122,15 @@ return list;
 			  
 			  try{
               
-              @SuppressWarnings("resource")
+            /*  @SuppressWarnings("resource")
               MongoClient mongo = new MongoClient( "localhost" , 27017 );  
               
               @SuppressWarnings("deprecation")
               DB db = mongo.getDB("Desktop");  
               
               DBCollection table = db.getCollection("flags.CricketFlags");  
-              System.out.println("Data received successfully");
+              System.out.println("Data received successfully");*/
+			  DBCollection table = db.getCollection("flags.CricketFlags");  
               DBCursor cursor = table.find(new BasicDBObject("team", team));
               System.out.println((int)cursor.one().get("code"));
               return (int)cursor.one().get("code");

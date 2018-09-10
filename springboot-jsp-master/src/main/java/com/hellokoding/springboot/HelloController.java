@@ -1,6 +1,7 @@
 package com.hellokoding.springboot;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import org.json.JSONException;
 import org.springframework.stereotype.Controller;
@@ -10,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.InsideEdge.dao.ExternalLiveNews;
-import com.InsideEdge.dao.ExternalLiveScore;
+import com.InsideEdge.dao.*;
+
 
 @Controller
 public class HelloController {
@@ -35,7 +36,7 @@ public class HelloController {
     	ExternalLiveScore dao1=new ExternalLiveScore();
         ModelAndView model1 = new ModelAndView();
         model1.addObject("users", dao1.getAllScore());
-        model1.setViewName("show");
+        model1.setViewName("sample");
         return model1;
 
     }
@@ -52,6 +53,17 @@ public class HelloController {
 	 
      model1.setViewName("LiveScoreSample");
     
+     return model1;
+
+ }
+ 
+ 
+ @RequestMapping(value = "/odi", method = RequestMethod.GET)
+ public ModelAndView odiPage() throws IOException, JSONException, ClassNotFoundException, SQLException {
+	 cric dao1=new cric();
+     ModelAndView model1 = new ModelAndView();
+     model1.addObject("odi", dao1.retreiveList());
+     model1.setViewName("SampleOdiPage");
      return model1;
 
  }

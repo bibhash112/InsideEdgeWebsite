@@ -2,7 +2,304 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
+
+<style>
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+  }
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid blue;
+  border-right: 16px solid green;
+  border-bottom: 16px solid red;
+  border-left: 16px solid pink;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+#customers {
+
+	margin: 0px auto;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+} 
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+
+<!-- <style>
+table, td, th {
+float: center;
+    border: 5px solid black;
+    padding: 15px;
+}
+
+table {
+float: center;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    height: 50px;
+}
+</style> -->
+<!-- <style>
+	
+	$baseColor: #398B93;
+$borderRadius: 10px;
+$imageBig: 100px;
+$imageSmall: 60px;
+$padding: 10px;
+
+
+
+
+
+img {
+   border-radius: 50%;
+   height: $imageSmall;
+   width: $imageSmall;
+}
+
+.table-users {
+   border: 1px solid darken($baseColor, 5%);
+   border-radius: $borderRadius;
+   box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+   max-width: calc(100% - 2em);
+   margin: 1em auto;
+   overflow: hidden;
+   width: 800px;
+}
+
+table {
+   width: 100%;
+   
+   td, th { 
+      color: darken($baseColor, 10%);
+      padding: $padding; 
+   }
+   
+   td {
+      text-align: center;
+      vertical-align: middle;
+      
+      &:last-child {
+         font-size: 0.95em;
+         line-height: 1.4;
+         text-align: left;
+      }
+   }
+   
+   th { 
+      background-color: lighten($baseColor, 50%);
+      font-weight: 300;
+   }
+   
+   tr {     
+      &:nth-child(2n) { background-color: white; }
+      &:nth-child(2n+1) { background-color: lighten($baseColor, 55%) }
+   }
+}
+
+@media screen and (max-width: 700px) {   
+   table, tr, td { display: block; }
+   
+   td {
+      &:first-child {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         width: $imageBig;
+      }
+
+      &:not(:first-child) {
+         clear: both;
+         margin-left: $imageBig;
+         padding: 4px 20px 4px 90px;
+         position: relative;
+         text-align: left;
+
+         &:before {
+            color: lighten($baseColor, 30%);
+            content: '';
+            display: block;
+            left: 0;
+            position: absolute;
+         }
+      }
+
+      &:nth-child(2):before { content: 'Name:'; }
+      &:nth-child(3):before { content: 'Email:'; }
+      &:nth-child(4):before { content: 'Phone:'; }
+      &:nth-child(5):before { content: 'Comments:'; }
+   }
+   
+   tr {
+      padding: $padding 0;
+      position: relative;
+      &:first-child { display: none; }
+   }
+}
+
+@media screen and (max-width: 500px) {
+   .header {
+      background-color: transparent;
+      color: lighten($baseColor, 60%);
+      font-size: 2em;
+      font-weight: 700;
+      padding: 0;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+   }
+   
+   img {
+      border: 3px solid;
+      border-color: lighten($baseColor, 50%);
+      height: $imageBig;
+      margin: 0.5rem 0;
+      width: $imageBig;
+   }
+   
+   td {
+      &:first-child { 
+         background-color: lighten($baseColor, 45%); 
+         border-bottom: 1px solid lighten($baseColor, 30%);
+         border-radius: $borderRadius $borderRadius 0 0;
+         position: relative;   
+         top: 0;
+         transform: translateY(0);
+         width: 100%;
+      }
+      
+      &:not(:first-child) {
+         margin: 0;
+         padding: 5px 1em;
+         width: 100%;
+         
+         &:before {
+            font-size: .8em;
+            padding-top: 0.3em;
+            position: relative;
+         }
+      }
+      
+      &:last-child  { padding-bottom: 1rem !important; }
+   }
+   
+   tr {
+      background-color: white !important;
+      border: 1px solid lighten($baseColor, 20%);
+      border-radius: $borderRadius;
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+      margin: 0.5rem 0;
+      padding: 0;
+   }
+   
+   .table-users { 
+      border: none; 
+      box-shadow: none;
+      overflow: visible;
+   }
+}
+
+	</style> -->
+	
 	<head>
+	<script>
+var myVar;
+
+function myFunction() {
+    myVar = setTimeout(showPage, 8000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+</script>
+	
+	
 		<title>Inside Edge</title>
 		<meta charset="utf-8">
 		<meta name="format-detection" content="telephone=no" />
@@ -51,12 +348,13 @@
 		<link rel="stylesheet" media="screen" href="css/ie.css">
 		<![endif]-->
 	</head>
-	<body class="page1" id="top">
+	<body class="page1" onload="myFunction()" style="margin:0;" id="top">
 		<div class="main">
 <!--==============================header=================================-->
 			<header>
 			
 			<h1>
+			<!-- <div class="loader"></div> -->
 							<a href="/home">
 								<img src="images/logox.jpg" alt="Inside edge">
 							</a>
@@ -73,10 +371,10 @@
 						<div class="menu_block">
 							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 								<ul class="sf-menu">
-									<li class="current"><a href="\home">Home</a></li>
+									<li><a href="/home">Home</a></li>
 									<li><a href="index-1">Player Search</a></li>
-									<li><a href="/live">Live Score</a></li>
-									<li><a href="index-2">Teams</a></li>
+									<li  class=><a href="/live">Live Score</a></li>
+									<li "current"><a href="/odi">Teams</a></li>
 									<li><a href="index-4">Contacts</a></li>
 								</ul>
 							</nav>
@@ -86,7 +384,166 @@
 					<div class="clear"></div>
 				</div>
 			</header>
-			<div class="slider_wrapper">
+			
+		
+		<br>
+		<table id="customers">
+		<tr>
+        <th colspan="6">ODI Matches</th>
+        </tr>
+        <tr>
+        <th>Country</th>
+        <th>Matches</th>
+        <th>Won</th>
+        <th>Lost</th>
+        <th>Tied</th>
+        <th>No Result</th>
+        </tr>
+  <%-- <tr>
+    <th>Match 1</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+  	<td><img src="https://cricket.yahoo.net/static-assets/flags/min/${teamScore.get(0).getFlagcodeA()}.png?v=1.06" height="30px" width="35px"></td>
+    <td>${teamScore.get(0).getTeamA()}</td>
+    <td>${teamScore.get(0).getScoreA()}</td> --%>
+    
+   <c:forEach items="${odi}" var="users">
+        
+       <tr>
+        
+            <td>${users.getCountry()}</td>
+            <td>${users.getM()}</td>
+            
+            <td>${users.getWon()}</td>
+            <td>${users.getLost()}</td>
+            
+            <td>${users.getTied()}</td>
+            <td>${users.getNR()}</td>
+            
+            <br>
+        </tr>
+    </c:forEach>
+  
+</table>	
+
+   	<br>
+   	<br>
+   	
+   <%-- <table>
+      
+
+      <tr>
+         
+         
+         <td>${teamScore.get(0).getTeamA()}</td>
+         <td>${teamScore.get(0).getScoreA()}</td>
+         
+      </tr>
+
+      <tr>
+         
+         <td>${teamScore.get(0).getTeamB()}</td>
+         <td>${teamScore.get(0).getScoreB()}</td>
+      </tr>
+
+     
+      
+      <tr>
+         
+         
+         <td>${teamScore.get(1).getTeamA()}</td>
+         <td>${teamScore.get(1).getScoreA()}</td>
+         
+      </tr>
+
+      <tr>
+         
+         <td>${teamScore.get(1).getTeamB()}</td>
+         <td>${teamScore.get(1).getScoreB()}</td>
+      </tr>
+
+      
+      
+      <tr>
+         
+         
+         <td>${teamScore.get(2).getTeamA()}</td>
+         <td>${teamScore.get(2).getScoreA()}</td>
+         
+      </tr>
+
+      <tr>
+         
+         <td>${teamScore.get(2).getTeamB()}</td>
+         <td>${teamScore.get(2).getScoreB()}</td>
+      </tr>
+
+    
+      
+      
+      <tr>
+         
+         
+         <td>${teamScore.get(3).getTeamA()}</td>
+         <td>${teamScore.get(3).getScoreA()}</td>
+         
+      </tr>
+
+      <tr>
+         
+         <td>${teamScore.get(3).getTeamB()}</td>
+         <td>${teamScore.get(3).getScoreB()}</td>
+      </tr>
+
+     
+      
+      <tr>
+         
+         
+         <td>${teamScore.get(4).getTeamA()}</td>
+         <td>${teamScore.get(4).getScoreA()}</td>
+         
+      </tr>
+
+      <tr>
+         
+         <td>${teamScore.get(4).getTeamB()}</td>
+         <td>${teamScore.get(4).getScoreB()}</td>
+      </tr>
+
+     
+      
+      
+   </table>
+
+			 --%>
+			
+			
+			<br>
+			<br>
+			<p> 
+		<%-- 	<center>
+   LIVE SCORES 
+   <br>
+   <table>
+    <c:forEach items="${teamScore}" var="users">
+        <tr>
+            <td>${users.getTeamA()}</td>
+            <td>${users.getTeamB()}</td>
+            </tr>
+            <tr>
+            <td>${users.getScoreA()}</td>
+            <td>${users.getScoreB()}</td>
+            
+            
+        </tr>
+    </c:forEach>
+</table>
+    
+   </center> --%>
+			<%-- <div class="slider_wrapper">
 				<div id="camera_wrap" class="">
 					<div data-src="images/1.jpg">
 						<div class="caption fadeIn">
@@ -116,7 +573,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 <!--==============================Content=================================-->
 			<!-- <div class="content"><div class="ic">More Website Templates @ TemplateMonster.com - April 21, 2014!</div>
 				<div class="container_12">
@@ -160,7 +617,7 @@
 						</div>
 					</div>-->
 					<div class="clear"></div>
-					<div class="grid_7">
+					<!-- <div class="grid_7">
 						<h3>Welcome to Inside Edge</h3>
 						<img src="images/logonew.jpg" alt="" class="img_inner fleft">
 						<div class="extra_wrapper">
@@ -174,12 +631,12 @@
 						<br>
 						<br>
 						<br>					
-					</div>
+					</div> -->
 					
 					
 					
+			
 					<center>
-					
 					<div class="container_12">
 					<div class="grid_12">
 						<div class="socials">
@@ -271,8 +728,7 @@
 					</div> -->
 					<div class="clear"></div>
 				</div>
-			</div>
-		</div>
+			
 		<br>
 		<br>
 <!--==============================footer=================================-->
